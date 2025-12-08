@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pixelrush — Task Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="light">
+  <div class="app-container">
+    <main class="main" style="margin-left: 0; width: 100%;">
+      <header class="hero">
+        <div>
+          <h1>Pixelrush Task Manager</h1>
+          <p class="muted">Simple and clean task management</p>
+        </div>
+        <div class="hero-cta">
+          <button class="theme-btn" id="themeToggle" style="background: #f0f0f0; border: 1px solid #ddd; padding: 8px 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-family: 'Poppins', sans-serif;">
+            <i class="fas fa-moon" id="themeIcon"></i>
+            <span id="themeText">Dark Mode</span>
+          </button>
+          <button class="btn-primary" id="quickAddBtn"><i class="fas fa-plus"></i> Add Task</button>
+        </div>
+      </header>
+
+      <section class="kpi-row">
+        <div class="kpi-grid">
+          <article class="kpi card clickable-card" data-filter="all">
+            <div class="kpi-top">
+              <p class="kpi-label">Total Tasks</p>
+              <i class="fas fa-list kpi-icon"></i>
+            </div>
+            <div class="kpi-value" id="totalTasks">0</div>
+            <p class="kpi-small muted">All tasks</p>
+          </article>
+
+          <article class="kpi card clickable-card" data-filter="completed">
+            <div class="kpi-top">
+              <p class="kpi-label">Completed</p>
+              <i class="fas fa-check-circle kpi-icon"></i>
+            </div>
+            <div class="kpi-value" id="completedTasks">0</div>
+            <p class="kpi-small muted">Completed tasks</p>
+          </article>
+
+          <article class="kpi card clickable-card" data-filter="pending">
+            <div class="kpi-top">
+              <p class="kpi-label">Pending</p>
+              <i class="fas fa-hourglass-half kpi-icon"></i>
+            </div>
+            <div class="kpi-value" id="pendingTasks">0</div>
+            <p class="kpi-small muted">Needs attention</p>
+          </article>
+
+          <article class="kpi card progress-card">
+            <div class="progress-wrap">
+              <svg class="progress-ring" width="120" height="120" viewBox="0 0 120 120">
+                <circle class="ring-bg" cx="60" cy="60" r="52" stroke-width="16" fill="none"/>
+                <circle class="ring" cx="60" cy="60" r="52" stroke-width="16" fill="none" stroke-linecap="round" />
+              </svg>
+              <div class="progress-center">
+                <div id="progressPercent">0%</div>
+                <div class="muted small">Today</div>
+              </div>
+            </div>
+            <p class="kpi-small muted">Tasks completed today</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="mid-row">
+        <div class="tasks-card card">
+          <div class="tasks-header">
+            <h3 id="tasksTitle">My Tasks</h3>
+            <div class="task-actions">
+              <select id="taskFilter" class="filter-select">
+                <option value="all">All Tasks</option>
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="school">School</option>
+              </select>
+            </div>
+          </div>
+          <div class="tasks-list" id="tasksList">
+            <div class="muted" style="text-align: center; padding: 40px 20px;">Loading tasks...</div>
+          </div>
+        </div>
+
+        <aside class="side-cards">
+          <div class="card small-card premium-card" id="streakCard">
+            <div class="premium-badge">PRO</div>
+            <h4>🔥 Current Streak</h4>
+            <p class="big" id="streakCount" style="color: #888; font-style: italic;">0 days</p>
+            <p class="muted small">Click for details</p>
+          </div>
+
+          <div class="card small-card premium-card" id="bestDayCard">
+            <div class="premium-badge">PRO</div>
+            <h4>🏆 Best Day</h4>
+            <p class="big" id="bestDay" style="color: #888; font-style: italic;">—</p>
+            <p class="muted small">Click for details</p>
+          </div>
+
+          <div class="card small-card trash-bin-card" id="trashBin">
+            <h4>🗑️ Trash Bin</h4>
+            <div class="trash-icon" id="trashIcon">
+              <i class="fas fa-trash"></i>
+            </div>
+            <p class="muted small">Drag tasks here to delete</p>
+            <div class="trash-count" id="trashCount">0</div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="bottom-row">
+        <div class="card activity-card premium-card" id="activityCard" style="grid-column: 1 / -1;">
+          <div class="premium-badge">PREMIUM</div>
+          <h3>Recent Activity</h3>
+          <div class="activity-scroll-container">
+            <ul id="activityFeed" class="activity-list">
+              <li style="text-align: center; padding: 40px 20px; color: #888; font-style: italic;">
+                Activity tracking available in full version<br>
+                <small>Click to learn more about premium features</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add/Edit Task Modal -->
+  <div id="taskModal" class="task-modal" aria-hidden="true">
+    <div class="modal-inner">
+      <h3 id="modalTitle">Add New Task</h3>
+      <form id="taskForm">
+        <input type="hidden" id="taskId">
+        
+        <label for="taskTitle">Task Title *</label>
+        <input type="text" id="taskTitle" required placeholder="Enter task title">
+        
+        <label for="taskDescription">Description</label>
+        <textarea id="taskDescription" placeholder="Enter task description (optional)"></textarea>
+        
+        <label for="taskType">Task Type</label>
+        <select id="taskType" class="task-type-select">
+          <option value="personal">Personal</option>
+          <option value="work">Work</option>
+          <option value="school">School</option>
+        </select>
+        
+        <label for="taskDueDate">Due Date</label>
+        <input type="date" id="taskDueDate">
+        
+        <div class="priority-section">
+          <label>Priority</label>
+          <div class="priority-options">
+            <label class="priority-option">
+              <input type="radio" name="priority" value="low" checked>
+              <span class="priority-dot low"></span>
+              Low
+            </label>
+            <label class="priority-option">
+              <input type="radio" name="priority" value="medium">
+              <span class="priority-dot medium"></span>
+              Medium
+            </label>
+            <label class="priority-option">
+              <input type="radio" name="priority" value="high">
+              <span class="priority-dot high"></span>
+              High
+            </label>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" id="closeModal">Cancel</button>
+          <button type="submit" class="btn-primary">Save Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="deleteModal" class="task-modal" aria-hidden="true">
+    <div class="modal-inner">
+      <h3>Delete Task</h3>
+      <p>Are you sure you want to delete this task? This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button type="button" id="cancelDelete">Cancel</button>
+        <button type="button" class="btn-danger" id="confirmDelete">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
