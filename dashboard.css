@@ -787,4 +787,28 @@ body.dark .premium-badge {
 /* Hide trash counter */
 .trash-count {
   display: none !important;
+
+}
+
+/* Add to your existing CSS file */
+body.dark .card,
+body.dark .kpi.card,
+body.dark .task-item,
+body.dark .activity-list li,
+body.dark .modal-inner {
+  color: #f6f7f8 !important;
+}
+
+body.dark .kpi-value,
+body.dark .task-title,
+body.dark .task-description,
+body.dark .big,
+body.dark h3,
+body.dark h4,
+body.dark p:not(.muted) {
+  color: #f6f7f8 !important;
+}
+
+body.dark .muted {
+  color: #b6b6b6 !important;
 }
