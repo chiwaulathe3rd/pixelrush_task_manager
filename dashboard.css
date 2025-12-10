@@ -25,19 +25,19 @@ body {
   color: var(--text);
   margin: 0;
   transition: background .25s, color .25s;
-  min-height: 100vh; /* Changed from height to min-height */
-  overflow-y: auto; /* Changed from hidden to auto */
+  min-height: 100vh;
+  overflow-y: auto;
 }
 .app-container {
   display: block;
-  min-height: 100vh; /* Keep this */
+  min-height: 100vh;
 }
 
 /* MAIN */
 .main {
   padding: 28px;
-  min-height: 100vh; /* Changed from height to min-height */
-  overflow-y: visible; /* Changed from auto */
+  min-height: 100vh;
+  overflow-y: visible;
   width: 100%;
 }
 
@@ -52,6 +52,7 @@ body {
 .hero h1 {
   font-size: 1.6rem;
   margin: 0;
+  color: var(--text);
 }
 
 .muted {
@@ -114,6 +115,7 @@ body {
   border-radius: 12px;
   padding: 18px;
   box-shadow: 0 6px 18px rgba(14,14,14,0.03);
+  color: var(--text);
 }
 
 .clickable-card {
@@ -143,12 +145,14 @@ body {
 
 .kpi-label {
   font-weight: 600;
+  color: var(--text);
 }
 
 .kpi-value {
   font-size: 1.7rem;
   font-weight: 700;
   margin: 12px 0;
+  color: var(--text);
 }
 
 .kpi-small {
@@ -197,6 +201,7 @@ body {
 
 .progress-center #progressPercent {
   font-weight: 700;
+  color: var(--text);
 }
 
 /* Mid row - Tasks Section */
@@ -223,6 +228,7 @@ body {
 
 .tasks-header h3 {
   margin: 0;
+  color: var(--text);
 }
 
 .task-actions {
@@ -238,6 +244,7 @@ body {
   background: #fff;
   font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
+  color: var(--text);
 }
 
 .tasks-list {
@@ -256,6 +263,7 @@ body {
   border: 1px solid rgba(0,0,0,0.04);
   margin-bottom: 8px;
   transition: all 0.2s ease;
+  color: var(--text);
 }
 
 .task-item:hover {
@@ -292,6 +300,7 @@ body {
 .task-title {
   font-weight: 600;
   margin-bottom: 4px;
+  color: var(--text);
 }
 
 .task-meta {
@@ -352,12 +361,14 @@ body {
 .small-card {
   padding: 14px;
   text-align: center;
+  color: var(--text);
 }
 
 .small-card .big {
   font-size: 1.4rem;
   font-weight: 700;
   margin: 8px 0;
+  color: var(--text);
 }
 
 /* Bottom row */
@@ -394,6 +405,7 @@ body {
   border-radius: 8px;
   background: #fff;
   border: 1px solid rgba(0,0,0,0.04);
+  color: var(--text);
 }
 
 .small {
@@ -421,6 +433,7 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   animation: modalSlideIn 0.3s ease-out;
   margin: 20px;
+  color: var(--text);
 }
 
 @keyframes modalSlideIn {
@@ -461,6 +474,7 @@ body {
   font-size: 0.9rem;
   transition: all 0.2s ease;
   box-sizing: border-box;
+  color: var(--text);
 }
 
 .modal-inner textarea {
@@ -494,6 +508,7 @@ body {
   padding: 8px 12px;
   border-radius: 6px;
   transition: all 0.2s ease;
+  color: var(--text);
 }
 
 .priority-option:hover {
@@ -540,7 +555,7 @@ body {
   color: var(--text);
 }
 
-/* Dark mode styles */
+/* Dark mode styles - FIXED TEXT COLORS */
 body.dark {
   --bg: #0f1113;
   --muted: #b6b6b6;
@@ -552,11 +567,18 @@ body.dark {
 body.dark .card {
   background: #101214;
   box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  color: var(--text) !important;
+}
+
+body.dark .kpi.card {
+  background: #101214;
+  color: var(--text) !important;
 }
 
 body.dark .modal-inner {
   background: #101214;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text);
 }
 
 body.dark .modal-inner input,
@@ -570,11 +592,44 @@ body.dark .modal-inner select {
 body.dark .task-item {
   background: #0f1315;
   border: 1px solid rgba(255,255,255,0.03);
+  color: var(--text);
 }
 
 body.dark .activity-list li {
   background: #0f1315;
   border: 1px solid rgba(255,255,255,0.03);
+  color: var(--text);
+}
+
+body.dark .kpi-value,
+body.dark .kpi-label,
+body.dark .task-title,
+body.dark .small-card .big,
+body.dark .small-card h4,
+body.dark .tasks-header h3,
+body.dark .activity-card h3,
+body.dark .hero h1 {
+  color: var(--text) !important;
+}
+
+body.dark .kpi-small,
+body.dark .muted {
+  color: var(--muted) !important;
+}
+
+body.dark .filter-select,
+body.dark .task-type-select {
+  background: #0f1315;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text);
+}
+
+body.dark .priority-option {
+  color: var(--text);
+}
+
+body.dark .priority-option:hover {
+  background: rgba(255,255,255,0.05);
 }
 
 /* Scrollbar styling */
@@ -587,6 +642,11 @@ body.dark .activity-list li {
 .tasks-list::-webkit-scrollbar-track {
   background: rgba(0,0,0,0.05);
   border-radius: 3px;
+}
+
+body.dark .activity-scroll-container::-webkit-scrollbar-track,
+body.dark .tasks-list::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
 }
 
 .activity-scroll-container::-webkit-scrollbar-thumb,
@@ -656,6 +716,7 @@ body.modal-open {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: var(--text);
 }
 
 .trash-bin-card.drag-over {
@@ -746,6 +807,7 @@ body.modal-open {
   position: relative;
   cursor: pointer;
   transition: all 0.2s ease;
+  color: var(--text);
 }
 
 .premium-card:hover {
@@ -755,6 +817,10 @@ body.modal-open {
 
 body.dark .premium-badge {
   background: #EC185D;
+}
+
+body.dark .premium-card {
+  color: var(--text);
 }
 
 /* Fix scrolling on mobile */
@@ -771,7 +837,7 @@ body.dark .premium-badge {
   .main {
     height: auto !important;
     overflow-y: visible !important;
-    padding-bottom: 80px; /* Add padding at bottom */
+    padding-bottom: 80px;
   }
   
   .mid-row, .bottom-row {
@@ -787,28 +853,69 @@ body.dark .premium-badge {
 /* Hide trash counter */
 .trash-count {
   display: none !important;
-
 }
 
-/* Add to your existing CSS file */
-body.dark .card,
-body.dark .kpi.card,
-body.dark .task-item,
-body.dark .activity-list li,
-body.dark .modal-inner {
-  color: #f6f7f8 !important;
+/* Theme toggle button */
+.theme-btn {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.2s ease;
 }
 
-body.dark .kpi-value,
-body.dark .task-title,
-body.dark .task-description,
-body.dark .big,
-body.dark h3,
-body.dark h4,
-body.dark p:not(.muted) {
-  color: #f6f7f8 !important;
+.theme-btn:hover {
+  background: #e0e0e0;
 }
 
-body.dark .muted {
-  color: #b6b6b6 !important;
+body.dark .theme-btn {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: var(--text);
+}
+
+body.dark .theme-btn:hover {
+  background: #3a3a3a;
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+  z-index: 10000;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: toastFadeIn 0.3s;
+}
+
+.toast-success {
+  background: #28a745;
+}
+
+.toast-danger {
+  background: #dc3545;
+}
+
+.toast-warning {
+  background: #ffc107;
+  color: #333;
+}
+
+@keyframes toastFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastFadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
 }
