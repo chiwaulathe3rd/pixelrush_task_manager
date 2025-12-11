@@ -24,7 +24,7 @@ themeBtn.addEventListener("click", () => {
 });
 
 /* -----------------------------------------
-   PREMIUM FEATURE POPUPS
+MA PRO FEATURES
 ----------------------------------------- */
 function setupPremiumPopups() {
     const streakCard = document.getElementById('streakCard');
@@ -85,7 +85,7 @@ function showPremiumPopup(title, message) {
 }
 
 /* -----------------------------------------
-   TASK MANAGEMENT SYSTEM (JavaScript Arrays Only)
+ MA JS ARRAY 4 TASKS
 ----------------------------------------- */
 
 // DOM Elements
@@ -149,7 +149,7 @@ function setupEventListeners() {
 }
 
 /* -----------------------------------------
-   TASK OPERATIONS (Local Storage)
+LOCAL STORAGE
 ----------------------------------------- */
 
 function loadTasksFromStorage() {
@@ -282,7 +282,7 @@ function deleteTask() {
 }
 
 /* -----------------------------------------
-   FORM HANDLERS
+  FORM LISTENERS
 ----------------------------------------- */
 
 function handleTaskSubmit(e) {
@@ -645,4 +645,5 @@ function showToast(msg, type = "success") {
 // Make functions available globally
 window.toggleTaskCompletion = toggleTaskCompletion;
 window.editTask = editTask;
+
 window.openDeleteModal = openDeleteModal;
